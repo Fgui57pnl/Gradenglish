@@ -1,0 +1,76 @@
+
+body {
+  font-family: Arial, sans-serif;
+  background-image: url(../images/choosing-bg.jpg);
+  background-color: #172238;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+}
+
+
+.login-container {
+  background-color: transparent;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  max-width: 100%;
+
+}
+
+
+.login-container h1 {
+   
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    background-color: transparent;
+    color: white;
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+.login-container input[type="submit"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+  cursor: pointer;
+}
+.remember-forgot a,.register-link a{
+  color: #fff;
+}
+.remember-forgot a:hover,.register-link a:hover{
+  text-decoration: underline;
+}
+.remember-forgot {
+  display: flex;
+  justify-content: space-between;
+
+
+}
+
+.login-container .register-link {
+    text-align: center;
+
+}
+
+
+
+@media screen and (max-width: 400px) {
+  .login-container {
+    width: 90%;
+  }
+}
