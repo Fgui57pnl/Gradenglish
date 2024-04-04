@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Kiểm tra kết quả trả về
     if ($result->num_rows > 0) {
         // Đăng nhập thành công
-        header('Location: http://www.youtube.com/');
+        header('Location: http://localhost/gradenglish/admin/index.html');
     } else {
         // Đăng nhập không thành công
         echo "<script>
