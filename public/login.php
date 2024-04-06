@@ -1,7 +1,7 @@
 <?php include 'share/header.php';
-        include '../backend/config.php' ?>
-
-
+        include '../backend/config.php';
+        session_destroy();
+        ?>
 <link rel="stylesheet" href="assets/css/login.css">
     <div class="login-container">
         <h1><b>Login</b></h1>
