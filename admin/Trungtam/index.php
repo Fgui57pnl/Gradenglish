@@ -3,15 +3,8 @@ $path = "../";
 require_once '../../backend/config.php';
 require_once '../../backend/session_check.php';
 
-
 // output data of each row
-$sql = "SELECT *
-
-FROM khoa_hoc
-
-INNER JOIN trung_tam
-
-ON khoa_hoc.Ma_Trung_Tam = trung_tam.Ma_Trung_Tam;";
+$sql = "SELECT * FROM trung_tam order by id asc";
 $result = show_data($sql);
 ?>
 
@@ -21,17 +14,13 @@ $result = show_data($sql);
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Khóa học</title>
+  <title>AdminLTE 3 | Trung tâm</title>
   <?php require_once '../share/style_asset.php'; ?>
 </head>
 
 <?php require_once $path . 'share/header.php'; ?>
 
-<?php if ($role =='Admin'){
-require_once '../share/sidebar.php'; }
-else require_once '../share/sidebar_stu.php'
-
-?>
+<?php require_once '../share/sidebar.php'; ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -39,12 +28,12 @@ else require_once '../share/sidebar_stu.php'
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Khóa học</h1>
+          <h1>Trung tâm</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Khóa học</li>
+            <li class="breadcrumb-item active">Trung tâm</li>
           </ol>
         </div>
       </div>
@@ -63,12 +52,10 @@ else require_once '../share/sidebar_stu.php'
                 <thead>
                   <tr>
                     <th style="width: 10px">#</th>
-                    <th>Tên khóa học</th>
-                    <th>Tên trung tâm</th>
-                    <th>Số tiết học</th>
-                    <th>Loại khóa học</th>
-                    <th>Học phí</th>
-                    <th>Link khóa học</th>
+                    <th>Tên Trung tâm</th>
+                    <th>Website</th>
+                    <th>Địa chỉ</th>
+
 
 
                   </tr>
@@ -76,63 +63,36 @@ else require_once '../share/sidebar_stu.php'
                 <?php while ($row = mysqli_fetch_assoc($result)) {
                 ?>
                   <tbody id="oday">
-
+                    <td>
+                      <?php echo $row['id'] ?>
+                    </td>
+                    <td>
+                      <?php echo $row['Ten_Trung_Tam'] ?>
+                    </td>
+                    <td>
+                      <?php echo $row['Website'] ?>
+                    </td>
+                    <td>
+                      <?php echo $row['Dia_chi'] ?>
+                    </td>
 
 
                     <td>
-                      <?php echo $row["id"]; ?>
+                      <a href="#" class="btn btn-xs btn-primary">
+                        <i class="fa fa-cog"> </i> Sửa
+                      </a>
+                      <a class="btn btn-xs btn-danger btn-remove" onclick="showAlert(event,'xoa.php?sid=<?php echo $row['id'] ?>')">
+                        <i class="fa fa-trash"></i> Xoá
+                      </a>
                     </td>
-                    <td>
-                      <?php echo $row["Ten_Khoa_Hoc"]; ?>
-                    </td>
-                    <td>
-                      <?php echo $row["Ten_Trung_Tam"]; ?>
-                    </td>
-                    <td>
-                      <?php echo $row["So_tiet"]; ?>
-                    </td>
-                    <td>
-                      <?php echo $row["Loai_Khoa_Hoc"]; ?>
-                    </td>
-                    <td>
-                      <?php echo $row["Hoc_Phi"]; ?> vnd
-                    </td>
-                    <td>
-                      <?php echo $row["Link_Khoa_Hoc"]; ?>
-                    </td>
-                    
-
-                    <?php ?>
-
-
-                    <?php 
-if ($role == 'Admin') {
-    echo '
-    <td>
-      <a href="#" class="btn btn-xs btn-primary">
-        <i class="fa fa-cog"></i> Sửa
-      </a>
-      <a class="btn btn-xs btn-danger btn-remove" onclick="showAlert(event, \'xoa.php?sid=' . $row['id'] . '\')">
-        <i class="fa fa-trash"></i> Xoá
-      </a>
-    </td>';
-}else if($role =='HV')
-echo '
-    <td>
-      <a href="#" class="btn btn-xs btn-primary">
-        <i class="fa fa-cart-arrow-down"></i> Đăng ký 
-      </a>
-
-    </td>';
-?>
-
 
 
                     </tr>
 
 
                   </tbody>
-                <?php  } ?><br>
+                <?php  } ?>
+
               </table>
               <script>
                 function showAlert(event, href) {
@@ -154,6 +114,9 @@ echo '
                   });
                 }
               </script>
+
+
+
 
 
             </div>

@@ -4,21 +4,15 @@
         ?>
 <link rel="stylesheet" href="assets/css/login.css">
     <div class="login-container">
-        <h1><b>Đăng nhập</b></h1>
+        <h1><b>Đăng ký</b></h1>
         <form action="login.php" method="post">
             <input type="text" name="Email" placeholder="Email" name="user" required>
             <input type="password" name="password" placeholder="Password" name="pass" required>
-            <div class="remember-forgot">
-    
+            <input type="password" name="password" placeholder="Nhập lại" name="pass" required>
+                <input type="submit" value="Đăng ký" name="btn-login">
+                <div class="register-link">
                 <p>
-                <a href="#">Quên mật khẩu?</a></p>
-            
-                
-            </div>
-                <input type="submit" value="Login" name="btn-login">
-           <div class="register-link">
-                <p>
-                    Không có tài khoản? <a href="registration.php">Đăng ký</a></nav>
+                    Đã có tài khoản? <a href="login.php">Đăng nhập</a></nav>
                 </p>
             </div>
             

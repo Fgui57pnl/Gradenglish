@@ -40,31 +40,6 @@
            </a>
          </li>
 
-         <li class="nav-item">
-           <a href="#" class="nav-link ">
-             <i class="nav-icon fa fa-tv"></i>
-             <p>
-               Trung tâm
-               <i class="fas fa-angle-left right"></i>
-               <span class="badge badge-info right"></span>
-             </p>
-           </a>
-           <ul class="nav nav-treeview">
-             <li class="nav-item">
-               <a href="<?php echo ADMIN_URL ?>trungtam" class="nav-link">
-                 <i class="far fa-circle nav-icon"></i>
-                 <p>Danh sách</p>
-               </a>
-             </li>
-           </ul>
-           <ul class="nav nav-treeview">
-             <li class="nav-item">
-               <a href="<?php echo ADMIN_URL ?>trungtam/center_add.php" class="nav-link">
-                 <i class="far fa-circle nav-icon"></i>
-                 <p>Tạo mới</p>
-               </a>
-             </li>
-           </ul>
 
          <li class="nav-item">
            <a href="#" class="nav-link ">
@@ -83,61 +58,11 @@
                </a>
              </li>
            </ul>
-           <ul class="nav nav-treeview">
-             <li class="nav-item">
-               <a href="<?php echo ADMIN_URL ?>khoahoc/course_add.php" class="nav-link">
-                 <i class="far fa-circle nav-icon"></i>
-                 <p>Tạo mới</p>
-               </a>
-             </li>
-           </ul>
+          
 
 
-         <li class="nav-item">
-           <a href="#" class="nav-link">
-             <i class="nav-icon fas fa-users"></i>
-             <p>
-               Giáo viên
-               <i class="fas fa-angle-left right"></i>
-               <span class="badge badge-info right"></span>
-             </p>
-           </a>
-           <ul class="nav nav-treeview">
-             <li class="nav-item">
-               <a href="<?php echo ADMIN_URL ?>giaovien" class="nav-link">
-                 <i class="far fa-circle nav-icon"></i>
-                 <p>Danh sách</p>
-               </a>
-             </li>
-           </ul>
-           <ul class="nav nav-treeview">
-             <li class="nav-item">
-               <a href="<?php echo ADMIN_URL ?>giaovien/teacher_add.php" class="nav-link">
-                 <i class="far fa-circle nav-icon"></i>
-                 <p>Tạo mới</p>
-               </a>
-             </li>
-           </ul>
-         <li class="nav-item">
-           <a href="#" class="nav-link">
-             <i class="nav-icon fas fa-user"></i>
-             <p>
-               Học viên
-               <i class="fas fa-angle-left right"></i>
-               <span class="badge badge-info right"></span>
-             </p>
-           </a>
-           <ul class="nav nav-treeview">
-             <li class="nav-item">
-               <a href="<?php echo ADMIN_URL ?>hocvien" class="nav-link">
-                 <i class="far fa-circle nav-icon"></i>
-                 <p>Danh sách</p>
-               </a>
-             </li>
-           </ul>
-
-         </li>
-
+        
+        
          <li class="nav-item">
            <a href="#" class="nav-link">
              <i class="nav-icon fas fa-calendar"></i>
@@ -155,14 +80,7 @@
                </a>
              </li>
            </ul>
-           <ul class="nav nav-treeview">
-             <li class="nav-item">
-               <a href="layout/top-nav.html" class="nav-link">
-                 <i class="far fa-circle nav-icon"></i>
-                 <p>Tạo mới</p>
-               </a>
-             </li>
-           </ul>
+         
 
 
 
@@ -183,16 +101,7 @@
                </a>
              </li>
            </ul>
-           <ul class="nav nav-treeview">
-             <li class="nav-item">
-               <a href="<?php echo ADMIN_URL ?>tailieu/document_add.php" class="nav-link">
-                 <i class="far fa-circle nav-icon"></i>
-                 <p>Tạo mới</p>
-               </a>
-             </li>
-           </ul>
-         </li>
-
+         
          <li class="nav-item">
            <a href="#" class="nav-link">
              <i class="nav-icon fas fa-share"></i>
@@ -227,13 +136,7 @@
              </p>
            </a>
          </li>
-         <li class="nav-item">
-           <a href="<?php echo ADMIN_URL ?>doanhthu" class="nav-link">
-             <i class="nav-icon far fas fa-dollar-sign"></i>
-             <p>
-               Doanh thu
-             </p>
-           </a>
+         
          </li>
          <li class="nav-item">
            <a href="<?php echo ADMIN_URL ?>/cauhinh/" class="nav-link">

@@ -9,6 +9,7 @@
   <script src="<?php echo ADMIN_URL ?>dist/js/adminlte.min.js"></script>
   <!-- Filterizr-->
   <script src="<?php echo ADMIN_URL ?>plugins/filterizr/jquery.filterizr.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- Page specific script -->
   <script>
@@ -28,14 +29,6 @@
         $(this).addClass('active');
       });
     })
-    function showSuccessMessage() {
-    var alertMessage = document.getElementById('alertMessage');
-    alertMessage.style.display = 'block'; // Hiển thị thông báo
-
-    setTimeout(function() {
-      alertMessage.style.display = 'none'; // Ẩn thông báo sau 3 giây
-    }, 2000); 
-  }
 
   // Gọi hàm showSuccessMessage khi đăng nhập thành công
   showSuccessMessage();

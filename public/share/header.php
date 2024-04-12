@@ -35,7 +35,7 @@
     <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
     <nav id="menu" class="main-nav" role="navigation">
       <ul class="main-menu">
-        <li><a href="#section1">Trang chủ</a></li>
+        <li><a href="index.php#section1">Trang chủ</a></li>
         <li class="has-submenu"><a href="#section2">Về chúng tôi</a>
           <ul class="sub-menu">
             <li><a href="#section3">Giảng viên</a></li>

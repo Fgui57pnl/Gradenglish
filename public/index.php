@@ -277,6 +277,7 @@
 
 
   <?php include 'share/footer.php';?>
+  <?php require_once 'share/scripts_control.php';?>
   <script>
     //according to loftblog tut
     $('.nav li:first').addClass('active');
