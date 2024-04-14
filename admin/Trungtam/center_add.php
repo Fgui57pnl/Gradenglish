@@ -45,23 +45,26 @@ require_once '../../backend/session_check.php'; ?>
 
                         <!-- /.card-header -->
                         <!-- form start -->
-                        
+
                         <form method="post" action="save.php">
-                            
+
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label >Tên Trung tâm</label>
-                                    <input type="text" class="form-control" name="center_name">
+                                    <label>Tên Trung tâm</label>
+                                    <input type="text" class="form-control" name="center_name" required>
+                                   
                                 </div>
+                               
+                              
                                 <div class="form-group">
-                                    <label >Website</label>
-                                    <input type="text" class="form-control" name="website">
+                                    <label>Website</label>
+                                    <input type="text" class="form-control" name="website" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Địa chỉ</label>
-                                    <input type="text" class="form-control" name="address" >
+                                    <input type="text" class="form-control" name="address" required>
                                 </div>
-                                
+
 
                                 <!-- /.card-body -->
 
@@ -71,7 +74,7 @@ require_once '../../backend/session_check.php'; ?>
                         </form>
                     </div>
                     <!-- /.card -->
-                
+
 
 
 

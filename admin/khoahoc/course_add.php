@@ -52,11 +52,11 @@ $result = show_data($sql);
                             <div class="card-body">
                                 <div class="form-group">
                                     <label >Tên khóa học</label>
-                                    <input type="text" class="form-control" name="course_name" >
+                                    <input type="text" class="form-control" name="course_name" required >
                                 </div>
                                 <div class="form-group">
                                     <label>Trung tâm</label>
-                                    <select class="form-control select2bs4" style="width: 100%;" name="center_name">
+                                    <select class="form-control select2bs4" style="width: 100%;" name="center_name"required >
                                         <option selected="selected">------</option>
                                         <?php while ($row = mysqli_fetch_assoc($result)) {
                 ?>
@@ -65,14 +65,34 @@ $result = show_data($sql);
                                         <?php }?>
                                     
                                     </select>
+                                    <div class="form-group">
+                                  
+                                <div class="form-group">
+                                    <label for="number">Số buổi</label>
+                                    <input type="number" maxlength="50" class="form-control" name="lesson"required  >
+                                </div>
+                                <?php 
+              if(isset($_GET['datewrong'])){
+                ?>
+                <span class="text-danger">Ngày bắt đầu phải nhỏ hơn ngày kết thúc</span>
+                <?php
+              }
+             ?>
+                                <div class="form-group">
+                                    <label for="number">Ngày bắt đầu</label>
+                                    <input type="date" class="form-control" name="startdate" required >
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Số buổi</label>
-                                    <input type="text" class="form-control" name="lesson" >
+                                    <label for="number">Ngày kết thúc</label>
+                                    <input type="date"  class="form-control" name="finishdate" required >
+                                </div>
+                                <div class="form-group">
+                                    <label for="number">Học phí</label>
+                                    <input type="number" min="1000000" maxlength="10000000" class="form-control" name="fee" required >
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Link khóa học</label>
-                                    <input type="text" class="form-control" name="lesson_link" >
+                                    <input type="text" class="form-control" name="lesson_link" required >
                                 </div>
                           
 

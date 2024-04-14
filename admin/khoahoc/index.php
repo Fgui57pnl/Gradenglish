@@ -5,7 +5,7 @@ require_once '../../backend/session_check.php';
 
 
 // output data of each row
-$sql = "SELECT *
+$sql = "SELECT DISTINCT *
 
 FROM khoa_hoc
 
@@ -27,9 +27,9 @@ $result = show_data($sql);
 
 <?php require_once $path . 'share/header.php'; ?>
 
-<?php if ($role =='Admin'){
-require_once '../share/sidebar.php'; }
-else require_once '../share/sidebar_stu.php'
+<?php if ($role == 'Admin') {
+  require_once '../share/sidebar.php';
+} else require_once '../share/sidebar_stu.php'
 
 ?>
 <!-- Content Wrapper. Contains page content -->
@@ -63,24 +63,27 @@ else require_once '../share/sidebar_stu.php'
                 <thead>
                   <tr>
                     <th style="width: 10px">#</th>
-                    <th>Tên khóa học</th>
+                    <th>Tên khóa</th>
                     <th>Tên trung tâm</th>
+                    <th>Ngày bắt đầu</th>
+                    <th>Ngày kết thúc</th>
                     <th>Số tiết học</th>
-                    <th>Loại khóa học</th>
+
                     <th>Học phí</th>
                     <th>Link khóa học</th>
 
 
                   </tr>
                 </thead>
-                <?php while ($row = mysqli_fetch_assoc($result)) {
+                <?php $id=1;
+                 while ($row = mysqli_fetch_assoc($result)) {
                 ?>
                   <tbody id="oday">
 
 
 
                     <td>
-                      <?php echo $row["id"]; ?>
+                      <?php echo $id; ?>
                     </td>
                     <td>
                       <?php echo $row["Ten_Khoa_Hoc"]; ?>
@@ -89,42 +92,46 @@ else require_once '../share/sidebar_stu.php'
                       <?php echo $row["Ten_Trung_Tam"]; ?>
                     </td>
                     <td>
-                      <?php echo $row["So_tiet"]; ?>
+                      <?php echo $row["Ngay_BD"]; ?>
                     </td>
                     <td>
-                      <?php echo $row["Loai_Khoa_Hoc"]; ?>
+                      <?php echo $row["Ngay_KT"]; ?>
                     </td>
+                    <td>
+                      <?php echo $row["So_tiet"]; ?>
+                    </td>
+
                     <td>
                       <?php echo $row["Hoc_Phi"]; ?> vnd
                     </td>
                     <td>
                       <?php echo $row["Link_Khoa_Hoc"]; ?>
                     </td>
-                    
-
-                    <?php ?>
 
 
-                    <?php 
-if ($role == 'Admin') {
-    echo '
-    <td>
-      <a href="#" class="btn btn-xs btn-primary">
-        <i class="fa fa-cog"></i> Sửa
-      </a>
-      <a class="btn btn-xs btn-danger btn-remove" onclick="showAlert(event, \'xoa.php?sid=' . $row['id'] . '\')">
-        <i class="fa fa-trash"></i> Xoá
-      </a>
-    </td>';
-}else if($role =='HV')
-echo '
-    <td>
-      <a href="#" class="btn btn-xs btn-primary">
-        <i class="fa fa-cart-arrow-down"></i> Đăng ký 
-      </a>
 
-    </td>';
-?>
+
+
+                    <?php
+                    if ($role == 'Admin') {
+                      echo '
+                          <td>
+                            <a href="#" class="btn btn-xs btn-primary">
+                              <i class="fa fa-cog"></i> Sửa
+                            </a>
+                            <a class="btn btn-xs btn-danger btn-remove" onclick="showAlert(event, \'xoa.php?sid=' . $id . '\')">
+                              <i class="fa fa-trash"></i> Xoá
+                            </a>
+                          </td>';
+                                          } else if ($role == 'HV')
+                                            echo '
+                          <td>
+                            <a href="#" class="btn btn-xs btn-primary">
+                              <i class="fa fa-cart-arrow-down"></i> Đăng ký 
+                            </a>
+
+                          </td>';
+                    ?>
 
 
 
@@ -132,7 +139,7 @@ echo '
 
 
                   </tbody>
-                <?php  } ?><br>
+                <?php $id++; } ?><br>
               </table>
               <script>
                 function showAlert(event, href) {
@@ -154,6 +161,24 @@ echo '
                   });
                 }
               </script>
+               <script type="text/javascript">
+            <?php
+            if (isset($_GET['success']) && $_GET['success'] == true) {
+            ?>
+              alert("Tạo mới thành công");
+              history.replaceState({}, document.title, window.location.pathname);
+
+            <?php } ?>
+            <?php 
+          if (isset($_GET['editsuccess']) && $_GET['editsuccess'] == true) {
+              ?>
+              
+                  alert("Sửa đổi thành công");
+                  history.replaceState({}, document.title, window.location.pathname);
+
+            
+              <?php  }     ?>
+          </script>
 
 
             </div>

@@ -7,7 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btn-new'])) {
     $website = trim($_POST['website']);
     $address = $_POST['address'];
 
-
+      
+     
     $sql_count = "SELECT COUNT(*) AS total FROM `trung_tam`";
     $result = mysqli_query($conn, $sql_count);
     $row = mysqli_fetch_assoc($result);
@@ -20,7 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btn-new'])) {
     
     // Execute the query
     if (mysqli_query($conn, $sql)) {
-        header('location: '. ADMIN_URL.'trungtam' );
+        header('location: '. ADMIN_URL.'trungtam?success=true' );
+        die;
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
