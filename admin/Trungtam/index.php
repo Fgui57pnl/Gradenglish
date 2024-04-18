@@ -4,7 +4,7 @@ require_once '../../backend/config.php';
 require_once '../../backend/session_check.php';
 
 // output data of each row
-$sql = "SELECT * FROM trung_tam order by id asc";
+$sql = "SELECT * FROM trung_tam order by id_TT ";
 $result = show_data($sql);
 ?>
 
@@ -65,7 +65,7 @@ $result = show_data($sql);
                 ?>
                   <tbody id="oday">
                     <td>
-                      <?php echo $id; $id++;?>
+                      <?php echo $id; ?>
                     </td>
                     <td>
                       <?php echo $row['Ten_Trung_Tam'] ?>
@@ -79,14 +79,14 @@ $result = show_data($sql);
 
 
                     <td>
-                      <a href="#" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#modal_<?php echo $row['id'] ?>">
+                      <a href="#" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#modal_<?php echo $row['id_TT'] ?>">
                         <i class="fa fa-cog"> </i> Sửa
 
                       </a>
-                      <a class="btn btn-xs btn-danger btn-remove" onclick="showAlert(event,'xoa.php?sid=<?php echo $row['id'] ?>')">
+                      <a class="btn btn-xs btn-danger btn-remove" onclick="showAlert(event,'xoa.php?sid=<?php echo $row['id_TT'] ?>')">
                         <i class="fa fa-trash"></i> Xoá
                       </a>
-                      <div class="modal fade" id="modal_<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal fade" id="modal_<?php echo $row['id_TT'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -100,8 +100,8 @@ $result = show_data($sql);
 
                                 <div class="card-body">
                                   <div class="form-group">
-                                  <label>STT</label>
-                                    <input type="text" class="form-control" name="id" readonly value="<?php echo $row['id'] ?>">
+                                  
+                                    <input type="hidden" class="form-control" name="id" readonly value="<?php echo $row['id_TT'] ?>">
                                     <label>Tên Trung tâm</label>
                                     <input type="text" class="form-control" name="center_name" value="<?php echo $row['Ten_Trung_Tam'] ?>" required>
 
@@ -143,7 +143,7 @@ $result = show_data($sql);
 
 
             </tbody>
-          <?php  } ?>
+          <?php $id++; } ?>
 
           </table>
 

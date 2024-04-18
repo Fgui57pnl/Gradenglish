@@ -27,6 +27,15 @@
     </div>
 </body>
 
+
+<script>  <?php
+            if (isset($_GET['success']) && $_GET['success'] == true) {
+            ?>
+              alert("Thêm thành công. Mời đăng nhập");
+              history.replaceState({}, document.title, window.location.pathname);
+
+            <?php } ?>
+</script>
 <?php require_once 'share/scripts_control.php';
       
 

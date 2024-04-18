@@ -1,19 +1,13 @@
 <?php require_once '../backend/config.php'; ?>
 <?php require_once '../backend/session_check.php'; 
-
+$sql_course = "SELECT COUNT(*) AS total FROM khoa_hoc";
+$course= getSimpleQuery($sql_course);
+$sql_tea = "SELECT COUNT(*) AS total FROM giang_vien";
+$teas= getSimpleQuery($sql_tea);
+$sql_stu = "SELECT COUNT(*) AS total FROM hoc_vien";
+$stu = getSimpleQuery($sql_stu);
 
 ?>
-
-
-<!--<div class="row justify-content-end">
-      <div class="col-md-3">
-        <div id="alertMessage" class="alert alert-success alert-dismissible" style="max-width: 350px;">
-          <p class="text-justify"><i class="icon fas fa-check"></i> Đăng nhập thành công</p>
-        </div>
-      </div>
-    </div>
-  </div>';*/ 
--->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,6 +44,71 @@
       </div>
     </div><!-- /.container-fluid -->
   </section>
+  <section class="content">
+    <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-blue">
+            <div class="inner">
+              <h3><?= $course['total']; ?></h3>
+
+              <p>Khoá học</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+            <a href="<?= $ADMIN_URL; ?>khoahoc" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3></h3>
+
+              <p>Lớp học</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="<?= $ADMIN_URL; ?>lop" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+            <h3><?= $stu['total']; ?></h3>
+
+              <p>Học viên</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="<?= $ADMIN_URL; ?>nhanvien" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3><h3><?= $teas['total']; ?></h3></h3>
+
+              <p>Giáo viên</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="<?php echo $ADMIN_URL ?>giaovien" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div></div>
+        
+      </section>
+  </section>
+</div>
 
   
 

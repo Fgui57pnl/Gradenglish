@@ -22,6 +22,11 @@ body {
   max-width: 100%;
 
 }
+.login-container .checkbox {
+  text-align: left;
+  align-items: left;
+
+}
 
 
 .login-container h1 {
@@ -40,6 +45,13 @@ body {
   border: 1px solid #ccc;
   border-radius: 20px;
 }
+#test *{
+  color: red !important;
+
+}
+
+
+ 
 
 .login-container input[type="submit"] {
     width: calc(100% - 20px);

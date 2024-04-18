@@ -15,10 +15,10 @@
      <!-- Sidebar user panel (optional) -->
      <div class="user-panel d-flex text-justify ">
        <div class="image">
-         <img src="<?php echo ADMIN_URL ?>dist/img/user1-128x128.png" class="img-circle" alt="User Image">
+         <img src="<?php echo STU_URL ?>dist/img/user1-128x128.png" class="img-circle" alt="User Image">
        </div>
        <div class="info text-light">
-         <p href="#"><?php echo $user ?><br>
+       <p href="#"><?php echo $user?><br>Role: <?php echo $role; ?> <br>
            <i class="fa-xs fa fa-circle text-success"></i> <small>Online</small>
          </p>
        </div>
@@ -32,7 +32,7 @@
          <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
          <li class="nav-item">
-           <a href="<?php echo ADMIN_URL ?>" class="nav-link">
+           <a href="<?php echo STU_URL ?>" class="nav-link">
              <i class="nav-icon far fa-image"></i>
              <p>
                Dashboard
@@ -52,7 +52,24 @@
            </a>
            <ul class="nav nav-treeview">
              <li class="nav-item">
-               <a href="<?php echo ADMIN_URL ?>khoahoc" class="nav-link">
+               <a href="<?php echo STU_URL ?>khoahoc" class="nav-link">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>Danh sách</p>
+               </a>
+             </li>
+           </ul>
+           <li class="nav-item">
+           <a href="#" class="nav-link ">
+             <i class="nav-icon fa fa-cart-arrow-down"></i>
+             <p>
+               Học phí
+               <i class="fas fa-angle-left right"></i>
+               <span class="badge badge-info right"></span>
+             </p>
+           </a>
+           <ul class="nav nav-treeview">
+             <li class="nav-item">
+               <a href="<?php echo STU_URL ?>hocphi" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
                  <p>Danh sách</p>
                </a>
@@ -74,7 +91,7 @@
            </a>
            <ul class="nav nav-treeview">
              <li class="nav-item">
-               <a href="<?php echo ADMIN_URL ?>lichhoc" class="nav-link">
+               <a href="<?php echo STU_URL ?>lichhoc" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
                  <p>Danh sách</p>
                </a>
@@ -95,7 +112,7 @@
            </a>
            <ul class="nav nav-treeview">
              <li class="nav-item">
-               <a href="<?php echo ADMIN_URL ?>tailieu" class="nav-link">
+               <a href="<?php echo STU_URL ?>tailieu" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
                  <p>Danh sách</p>
                </a>
@@ -113,7 +130,7 @@
            </a>
            <ul class="nav nav-treeview">
              <li class="nav-item">
-               <a href="<?php echo ADMIN_URL ?>phanhoi" class="nav-link">
+               <a href="<?php echo STU_URL ?>phanhoi" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
                  <p>Danh sách</p>
                </a>
@@ -121,14 +138,14 @@
            </ul>
            <ul class="nav nav-treeview">
              <li class="nav-item">
-               <a href="<?php echo ADMIN_URL ?>phanhoi/feedback_add.php" class="nav-link">
+               <a href="<?php echo STU_URL ?>phanhoi/feedback_add.php" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
                  <p>Tạo mới</p>
                </a>
              </li>
            </ul>
          <li class="nav-item">
-           <a href="<?php echo ADMIN_URL ?>/dethi/" class="nav-link">
+           <a href="<?php echo STU_URL ?>/dethi/" class="nav-link">
              <i class="nav-icon fas fa-copy"></i>
              <p>
                Đề thi
@@ -139,7 +156,7 @@
          
          </li>
          <li class="nav-item">
-           <a href="<?php echo ADMIN_URL ?>/cauhinh/" class="nav-link">
+           <a href="<?php echo STU_URL ?>/cauhinh/" class="nav-link">
              <i class="nav-icon fas 	fa fa-cog"></i>
              <p>
                Cấu hình

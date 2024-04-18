@@ -1,6 +1,8 @@
 <?php
 $path = "../";
-require_once '../../backend/config.php'; ?>
+require_once '../../backend/config.php'; 
+require_once '../../backend/session_check.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">

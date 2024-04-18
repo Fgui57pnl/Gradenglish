@@ -25,13 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btn-new'])) {
     $sql_count = "SELECT * FROM `khoa_hoc` order by `Ma_Khoa_Hoc` desc limit 1";
     $result = mysqli_query($conn, $sql_count);
     $row = mysqli_fetch_assoc($result);
-    $next_id = $row['id'] + 1;
+    $next_id = $row['id_KH'] + 1;
     $ma_khoa_hoc = "KH" . str_pad($next_id,2, '0', STR_PAD_LEFT);
 
     // Assuming $conn is your database connection
 
-    $sql="INSERT INTO `khoa_hoc`(`id`, `Ma_Khoa_Hoc`, `Ma_Trung_Tam`, `Ten_Khoa_Hoc`, `So_tiet`, `Hoc_Phi`, `Link_Khoa_Hoc`, `Ngay_BD`, `Ngay_KT`) 
-                        VALUES ('$next_id','$ma_khoa_hoc','$ma_trung_tam','$course_name','$lesson','$fee','$lesson_link','$start_date','$finish_date')";
+    $sql="INSERT INTO `khoa_hoc`( `Ma_Khoa_Hoc`, `Ma_Trung_Tam`, `Ten_Khoa_Hoc`, `So_tiet`, `Hoc_Phi`, `Link_Khoa_Hoc`, `Ngay_BD`, `Ngay_KT`) 
+                        VALUES ('$ma_khoa_hoc','$ma_trung_tam','$course_name','$lesson','$fee','$lesson_link','$start_date','$finish_date')";
     // Execute the query
     if (mysqli_query($conn, $sql)) {
         header('location: '. ADMIN_URL.'khoahoc?=success' );

@@ -9,9 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btn-up'])) {
     $id = $_POST['id'];
       
 
+
     // Assuming $conn is your database connection
     $sql = "UPDATE `trung_tam` SET 
-    `Ten_Trung_Tam`='$center_name',`Website`='$website ',`Dia_chi`='$address' where `id`=$id";
+    `Ten_Trung_Tam`='$center_name',`Website`='$website ',`Dia_chi`='$address' where `id_TT`=$id";
     
     // Execute the query
     if (mysqli_query($conn, $sql)) {

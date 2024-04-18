@@ -29,7 +29,7 @@
 
 <?php require_once 'share/header.php'; ?>
 
-<?php require_once 'share/sidebar_stu.php'; ?>
+<?php require_once 'share/sidebar.php'; ?>
 
 
 <!-- Content Wrapper. Contains page content -->

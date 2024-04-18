@@ -45,24 +45,43 @@ require_once '../../backend/session_check.php';?>
 
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form>
+                        <form method="post" action="save.php" onsubmit="return password_check()">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Email</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1">
+                                    <input type="email" class="form-control" name="Email" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Tên học viên</label>
-                                    <input type="text" class="form-control" id="exampleInputPassword1">
+                                    <input type="text" class="form-control" name="stu_name" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Mật khẩu</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1">
+                                    <label>Giới tính</label>
+                                    <select class="form-control select2bs4" name="gender" style="width: 100%;" required>
+                                        <option selected="selected"></option>
+                                        <option>Nam </option>
+                                        <option>Nữ</option>
+
+                                    </select>
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Xác nhận mật khẩu</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1">
-                                </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Mật khẩu</label>
+                                        <input type="password" class="form-control"  id="password" name="password" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Xác nhận mật khẩu</label>
+                                        <input type="password" class="form-control" id="password_confirm" name="password_confirm" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">SDT</label>
+                                        <input type="text" maxlength="10" class="form-control" name="SDT" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Địa chỉ</label>
+                                        <input type="text" class="form-control" name="address" required>
+                                    </div>
+
+
 
 
 
@@ -72,11 +91,28 @@ require_once '../../backend/session_check.php';?>
                                 <!-- /.card-body -->
 
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Tạo mới</button>
+                                    <button type="submit" name="btn-new" class="btn btn-primary">Tạo mới</button>
                                 </div>
                         </form>
                     </div>
                     <!-- /.card -->
+                    <script>
+        function password_check() {
+    var password = document.getElementById("password").value;
+    var password_confirm = document.getElementById("password_confirm").value;
+
+    if (password !== password_confirm) {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Mật khẩu nhập lại phải giống nhau"
+        });
+        return false; // Ngăn form được gửi đi
+    }
+    return true; // Cho phép gửi form nếu tất cả điều kiện đều đúng
+}
+
+    </script>
 
 
 

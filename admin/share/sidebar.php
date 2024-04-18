@@ -7,7 +7,7 @@
    <!-- Brand Logo -->
    <a href="../index.php" class="brand-link">
 
-     <span class="brand-text font-weight-light">AdminLTE 3</span>
+     <span class="brand-text font-weight-light"></span>
    </a>
 
    <!-- Sidebar -->
@@ -18,7 +18,8 @@
          <img src="<?php echo ADMIN_URL ?>dist/img/user1-128x128.png" class="img-circle" alt="User Image">
        </div>
        <div class="info text-light">
-         <p href="#"><?php echo $user ?><br>
+         <p href="#"><?php echo $user?><br>Role: <?php echo $role; ?> <br>
+    
            <i class="fa-xs fa fa-circle text-success"></i> <small>Online</small>
          </p>
        </div>
@@ -132,6 +133,14 @@
                <a href="<?php echo ADMIN_URL ?>hocvien" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
                  <p>Danh sách</p>
+               </a>
+             </li>
+           </ul>
+           <ul class="nav nav-treeview">
+             <li class="nav-item">
+               <a href="<?php echo ADMIN_URL ?>hocvien/student_add.php" class="nav-link">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>Tạo mới</p>
                </a>
              </li>
            </ul>

@@ -1,7 +1,7 @@
 <?php
 require_once '../../backend/config.php';
 require_once '../../backend/session_check.php';
-$sql = "SELECT * FROM giang_vien order by id asc";
+$sql = "SELECT * FROM giang_vien order by id_GV asc";
 $result = show_data($sql);
 ?>
 
@@ -77,11 +77,12 @@ $result = show_data($sql);
 
                   </tr>
                 </thead>
-                <?php while ($row = mysqli_fetch_assoc($result)) {
+                <?php $id=1;
+                while ($row = mysqli_fetch_assoc($result)) {
                 ?>
                 <tbody id="oday">
                   <td>
-                  <?php echo $row['id']?>
+                  <?php echo $id?>
                   </td>
                   <td>
                   <?php echo $row['Email']?>
@@ -90,7 +91,7 @@ $result = show_data($sql);
                   <?php echo $row['Ho_va_Ten']?>
                   </td>
                   <td>
-                  <?php if ($row['Gioi_Tinh']==1) echo 'Nam'; else echo 'Nữ'; ?>
+                  <?php echo $row['Gioi_tinh'] ?>
                   </td>
                   <td>
                   <?php echo $row['So_dien_thoai']?>
@@ -102,18 +103,79 @@ $result = show_data($sql);
                  
                 
                  <td>
-                    <a href="#" class="btn btn-xs btn-primary">
+                 <a href="#" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#modal_<?php echo $row['id_GV'] ?>">
                       <i class="fa fa-cog"></i> Sửa
                     </a>
-                    <a href="#" class="btn btn-xs btn-danger btn-remove">
+                    <a class="btn btn-xs btn-danger btn-remove" onclick="showAlert(event,'xoa.php?sid=<?php echo $row['id_GV'] ?>')">
                       <i class="fa fa-trash-o"></i> Xoá
                     </a>
                   </td>
+                  <div class="modal fade" id="modal_<?php echo $row['id_GV'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel">Cập nhật thông tin</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                  <div class="modal-body">
+                            <form method="post" action="update.php" onsubmit="return password_check()">
+
+
+                              <div class="card-body">
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">Email</label>
+                                  <input type="email" class="form-control" name="Email" value="<?php echo $row['Email'] ?>" required>
+                                </div>
+                                <div class="form-group">
+                                  <label for="exampleInputPassword1">Tên giáo viên</label>
+                                  <input type="text" class="form-control" name="tea_name" value="<?php echo $row['Ho_va_Ten'] ?>" required>
+                                </div>
+                                <div class="form-group">
+                                  <label>Giới tính</label>
+                                  <select class="form-control select2bs4" name="gender" style="width: 100%;">
+                                
+                                  <?php
+                                  // Define an array of car options
+                                  $genderOptions = array("Nam", "Nữ");
+
+                                  // Loop through the array to create options
+                                  foreach ($genderOptions  as $option) {
+                                    // Check if the option matches the submitted value
+                                    $selected = ($row['Gioi_tinh'] == $option) ? 'selected' : '';
+
+                                    // Output each option with selected attribute if applicable
+                                    echo "<option value='$option' $selected>$option</option>";
+                                  }
+                                  ?>
+                                  </select>
+                                </div>
+                            
+                                <div class="form-group">
+                                  <label for="exampleInputPassword1">SDT</label>
+                                  <input type="text" maxlength="10" class="form-control" name="SDT" value="<?php echo $row['So_dien_thoai'] ?>" required>
+                                </div>
+                                <div class="form-group">
+                                  <label for="exampleInputPassword1">Địa chỉ</label>
+                                  <input type="text" class="form-control" name="address" value="<?php echo $row['Dia_Chi'] ?>" required>
+                                </div>
                 
-                  </tr>
+                              
+                          </div>
+                          <div class="modal-footer">
+
+                            <button type="submit" name="btn-up" class="btn btn-primary">Lưu</button>
+                          </div>
+                          </form>
+                        </div>
+                      </div>
+
+
+                    </div>
 
                 </tbody>
-                <?php  } ?>
+                <?php $id++; } ?>
               </table>
 
 
@@ -122,6 +184,45 @@ $result = show_data($sql);
           </div>
         </div>
       </div>
+      <script>
+            function showAlert(event, href) {
+              event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+              Swal.fire({
+                title: 'Cảnh báo',
+                text: 'Bạn có chắc chắn muốn xóa nó này?',
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: 'Đồng ý',
+                cancelButtonText: 'Hủy',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  // Chuyển hướng sau khi nhấp vào nút "Đồng ý"
+                  window.location.href = href;
+                }
+              });
+            }
+          </script>
+          <script type="text/javascript">
+            <?php
+            if (isset($_GET['success']) && $_GET['success'] == true) {
+            ?>
+              alert("Tạo mới thành công");
+              history.replaceState({}, document.title, window.location.pathname);
+
+            <?php } ?>
+            <?php 
+          if (isset($_GET['editsuccess']) && $_GET['editsuccess'] == true) {
+              ?>
+              
+                  alert("Sửa đổi thành công");
+                  history.replaceState({}, document.title, window.location.pathname);
+
+            
+              <?php  }     ?>
+          </script>
+
 
 
 

@@ -2,7 +2,7 @@
 $path = "../";
 require_once '../../backend/config.php'; 
 require_once '../../backend/session_check.php';
-$sql = "SELECT * FROM trung_tam order by id asc";
+$sql = "SELECT * FROM trung_tam ";
 $result = show_data($sql);
 ?>
 
@@ -48,7 +48,7 @@ $result = show_data($sql);
 
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form method="post" action="save.php">
+                        <form method="post" action="save.php" onsubmit="return Date_check()">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label >Tên khóa học</label>
@@ -72,26 +72,22 @@ $result = show_data($sql);
                                     <input type="number" maxlength="50" class="form-control" name="lesson"required  >
                                 </div>
                                 <?php 
-              if(isset($_GET['datewrong'])){
-                ?>
-                <span class="text-danger">Ngày bắt đầu phải nhỏ hơn ngày kết thúc</span>
-                <?php
-              }
+              
              ?>
                                 <div class="form-group">
                                     <label for="number">Ngày bắt đầu</label>
-                                    <input type="date" class="form-control" name="startdate" required >
+                                    <input type="date" id=start_date class="form-control" name="startdate" required >
                                 </div>
                                 <div class="form-group">
                                     <label for="number">Ngày kết thúc</label>
-                                    <input type="date"  class="form-control" name="finishdate" required >
+                                    <input type="date" id=finish_date class="form-control" name="finishdate" required >
                                 </div>
                                 <div class="form-group">
                                     <label for="number">Học phí</label>
                                     <input type="number" min="1000000" maxlength="10000000" class="form-control" name="fee" required >
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Link khóa học</label>
+                                    <label >Link khóa học</label>
                                     <input type="text" class="form-control" name="lesson_link" required >
                                 </div>
                           
@@ -105,6 +101,23 @@ $result = show_data($sql);
                         </form>
                     </div>
                     <!-- /.card -->
+                    <script>
+        function Date_check() {
+            var start_date= new Date(document.getElementById("start_date").value);
+            var finish_date = new Date(document.getElementById("finish_date").value);
+
+            if (start_date >= finish_date) {
+                Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Ngày bắt đầu phải nhỏ hơn ngày kết thúc",
+        
+                });
+                return false; // Ngăn form được gửi đi
+            }
+            return true; // Cho phép gửi form nếu tất cả điều kiện đều đúng
+        }
+    </script>
 
 
 

@@ -8,7 +8,7 @@ require_once '../../backend/config.php'; ?>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Doanh thu</title>
+  <title>AdminLTE 3 | Đề thi</title>
   <?php require_once '../share/style_asset.php'; ?>
 </head>
 
@@ -22,12 +22,12 @@ require_once '../../backend/config.php'; ?>
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Doanh thu</h1>
+          <h1>Đề thi</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Doanh thu</li>
+            <li class="breadcrumb-item active">Đề thi</li>
           </ol>
         </div>
       </div>
