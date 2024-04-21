@@ -70,7 +70,7 @@ $result = show_data($sql);
                     <th>Số tiết học</th>
 
                     <th>Học phí</th>
-                    <th>Link khóa học</th>
+                 
 
 
                   </tr>
@@ -80,7 +80,7 @@ $result = show_data($sql);
                 ?>
                   <tbody id="oday">
 
-                  <form action="../hocphi/shopping_cart.php?id=<?php echo $row ['id']?>" method="post">
+             
 
                     <td >
                       <?php echo $id; ?>
@@ -104,24 +104,13 @@ $result = show_data($sql);
                     <td>
                       <?php echo $row["Hoc_Phi"]; ?> vnd
                     </td>
-                    <td>
-                      <?php echo $row["Link_Khoa_Hoc"]; ?>
-                    </td>
-
+                 
 
 
 
 
                     
-                          <td>
-                            <button href="#" type="submit" name="add_cart" class="btn btn-xs btn-primary">
-                              <i class="fa fa-cart-arrow-down"  > </i> Đăng ký 
-
-                            </button>
-
-                          </td>
-                    
-                    </form>
+                        
                   
 
 

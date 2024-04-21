@@ -7,7 +7,6 @@
    <!-- Brand Logo -->
    <a href="../index.php" class="brand-link">
 
-     <span class="brand-text font-weight-light">AdminLTE 3</span>
    </a>
 
    <!-- Sidebar -->

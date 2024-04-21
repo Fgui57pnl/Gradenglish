@@ -1,7 +1,14 @@
 <?php
 require_once '../../backend/config.php';
 require_once '../../backend/session_check.php';
-$sql = "SELECT * FROM giang_vien order by id_GV asc";
+$search = "";
+if(isset($_POST['tk'])){
+  if($_POST['search'] != ""){
+    $search = " where Ho_Va_Ten like '%".$_POST['search']."%'";
+  }
+}
+$sql = "select *
+        from giang_vien order by id_GV asc".$search ;
 $result = show_data($sql);
 ?>
 
@@ -45,16 +52,24 @@ $result = show_data($sql);
     <div class="row">
     <div class="col-md"></div>
       <div class="col-md-4">
+        <form action="" method="post">
+
   <div class="input-group ">
             <div class="form-outline" data-mdb-input-init>
-              <input type="search" placeholder="Search" id="form1" class="form-control" />
+              <input type="search" name="search" placeholder="Search" id="form1" class="form-control" />
             </div>
-            <button  type="button" class="btn btn-primary" data-mdb-ripple-init>
+            <button  type="submit" name=tk class="btn btn-primary" data-mdb-ripple-init>
               <i class="fas fa-search"></i>
             </button>
           </div>
       </div>
+      </form>
     </div> 
+    <div class="box-body">
+            <?php if(isset($_POST['tk']) && $_POST['search'] != "" ){ ?>
+            <p>Kết quả tím kiếm cho <strong><em><?php echo $_POST['search'] ?></em></strong> </p>
+            <?php } ?>
+    </div>
     
     <div class="row">
       <div class="col-xs-12">
@@ -126,6 +141,7 @@ $result = show_data($sql);
                               <div class="card-body">
                                 <div class="form-group">
                                   <label for="exampleInputEmail1">Email</label>
+                                  <input type="hidden" class="form-control" name="id" readonly value="<?php echo $row['id_GV'] ?>">
                                   <input type="email" class="form-control" name="Email" value="<?php echo $row['Email'] ?>" required>
                                 </div>
                                 <div class="form-group">

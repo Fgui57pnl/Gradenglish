@@ -88,7 +88,7 @@ $result1 = show_data($sql);
 
 
                     <td>
-                    <a href="#" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#modal_<?php echo $row['id'] ?>">
+                      <a href="#" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#modal_<?php echo $row['id'] ?>">
                         <i class="fa fa-cog"></i> Sửa
                       </a>
                       <a class="btn btn-xs btn-danger btn-remove" onclick="showAlert(event,'xoa.php?sid=<?php echo $row['id'] ?>')">
@@ -96,62 +96,70 @@ $result1 = show_data($sql);
                       </a>
                     </td>
                     <div class="modal fade" id="modal_<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="myModalLabel">Cập nhật thông tin</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                        
-
-                              <form method="post" action="save.php">
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Tên tài liệu</label>
-                                    <input type="text" class="form-control" name="doc_name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Khóa học</label>
-                                    <select class="form-control select2bs4" style="width: 100%;" name="course_name" required>>
-                                    
-                                    <?php while ($row1 = mysqli_fetch_assoc($result1)) {?>
-                                        <option> <?php echo $row1['Ten_Khoa_Hoc'] ?></option>
-                                    <?php }?>
-
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Loại tài liệu</label>
-                                    <select class="form-control select2bs4" style="width: 100%;"name="course_type" required>>
-                                
-                                        <option>Giáo trình</option>
-                                        <option>Video bài giảng</option>
-                                        <option>Bài tập</option>
-                                    
-                                    
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Link tài liệu</label>
-                                    <input type="text" class="form-control" name="course_link" required>
-                                </div>
-
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel">Cập nhật thông tin</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
                           </div>
-                          <div class="modal-footer">
-                  
-                            <button type="submit" name="btn-up" class="btn btn-primary">Lưu</button>
+                          <div class="modal-body">
+
+
+                            <form method="post" action="update.php">
+                              <div class="card-body">
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">Tên tài liệu</label>
+                                  <input type="hidden" class="form-control" name="id" readonly value="<?php echo $row['id'] ?>">
+                                  <input type="text" class="form-control" name="doc_name" value="<?php echo $row['Ten_Tai_Lieu'] ?>" required>
+                                </div>
+                                <div class="form-group">
+                                  <label>Khóa học</label>
+                                  <select class="form-control select2bs4" style="width: 100%;" name="course_name" required>>
+
+                                    <?php while ($row1 = mysqli_fetch_assoc($result1)) { ?>
+                                      <option> <?php echo $row1['Ten_Khoa_Hoc'] ?></option>
+                                    <?php } ?>
+
+                                  </select>
+                                </div>
+                                <div class="form-group">
+                                  <label>Loại tài liệu</label>
+                                  <select class="form-control select2bs4" style="width: 100%;" name="course_type" required>>
+                                    <?php
+                                    // Define an array of car options
+                                    $course_type = array("Giáo trình", "Video bài giảng", "Bài tập");
+
+
+                                    foreach ($course_type  as $option) {
+
+                                      $selected = ($row['Loai_Tai_lieu'] == $option) ? 'selected' : '';
+
+                                      echo "<option value='$option' $selected>$option</option>";
+                                    }
+                                    ?>
+
+                                  </select>
+                                </div>
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">Link tài liệu</label>
+                                  <input type="text" class="form-control" name="course_link" value="<?php echo $row['Link_Tai_Lieu'] ?>" required>
+                                </div>
+
+                              </div>
+                              <div class="modal-footer">
+
+                                <button type="submit" name="btn-up" class="btn btn-primary">Lưu</button>
+                              </div>
+                            </form>
                           </div>
-                          </form>
                         </div>
-                      </div>
-                      
-                      
-            </div>
 
-                    </tr>
+
+                      </div>
+
+                      </tr>
 
                   </tbody>
                 <?php $id++;

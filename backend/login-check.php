@@ -11,7 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btn-login'])) {
     $stmt1 = $conn->prepare("SELECT * FROM nguoi_dung WHERE Email=? AND Mat_khau=?");
     $stmt1->bind_param("ss", $Email, md5($password));
     $stmt1->execute();
-
     $result1 = $stmt1->get_result();
     
     if ($result1->num_rows > 0) {
@@ -40,12 +39,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btn-login'])) {
             header('Location:'.STU_URL);
             exit;
         } else {
-            // Sai tên đăng nhập hoặc mật khẩu
-            echo "<script>
-                alert('Sai mật khẩu hoặc tên đăng nhập');
-                window.location.href = '" . PUBLIC_URL . "login.php';
-              </script>";
-            exit;
+            // Kiểm tra tài khoản trong bảng giảng viên
+            $stmt3 = $conn->prepare("SELECT * FROM giang_vien WHERE Email=? AND  Mat_khau=?");
+            $stmt3->bind_param("ss", $Email, md5($password));
+            $stmt3->execute();
+            $result3 = $stmt3->get_result();
+            
+            if ($result3->num_rows > 0) {
+                // Tài khoản thuộc loại 3 (giảng viên)
+                // Thực hiện các hành động cần thiết
+                $row3 = $result3->fetch_assoc();
+                $_SESSION["login"] = $row3['Ho_va_Ten'];
+                $_SESSION["role"] = $row3['Loai_Tai_khoan'];
+                $_SESSION['test'] = $Email;
+                header('Location:'.TEACHER_URL);
+                exit;
+            } else {
+                // Sai tên đăng nhập hoặc mật khẩu
+                echo "<script>
+                    alert('Sai mật khẩu hoặc tên đăng nhập');
+                    window.location.href = '" . PUBLIC_URL . "login.php';
+                  </script>";
+                exit;
+            }
         }
     }
 }

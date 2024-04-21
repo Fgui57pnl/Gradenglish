@@ -2,12 +2,16 @@
 $path = "../";
 require_once '../../backend/config.php'; 
 require_once '../../backend/session_check.php';
-$sql="SELECT Ten_Khoa_Hoc,Noi_dung,Diem_Danh_Gia,Ngay_DG,danh_gia.id
+$sql="SELECT Ten_Khoa_Hoc,Noi_dung,Diem_Danh_Gia,Ngay_DG,id_DG
 
 FROM danh_gia
 
 JOIN khoa_hoc ON khoa_hoc.Ma_Khoa_Hoc = danh_gia.Ma_Khoa_Hoc;";
 $result = show_data($sql);
+$sql_course="SELECT * 
+FROM khoa_hoc ";
+$result1=show_data($sql_course);
+
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +61,7 @@ $result = show_data($sql);
       
             <th>Tên khóa</th>
             <th>Nội dung</th>
-            <th>Loại đánh giá</th>
+            <th>Điểm đánh giá</th>
             <th>Ngày đánh giá</th>
             
             
@@ -79,24 +83,71 @@ $result = show_data($sql);
                       <?php echo $row['Noi_dung'] ?>
                     </td>
                     <td>
-                    <?php echo $row['Diem_Danh_Gia'] ?>
+                    <?php echo $row['Diem_Danh_Gia'] ?>/100
                     </td>
                     <td>
                     <?php echo $row['Ngay_DG'] ?>
                     </td>
                   
             <td>
-            <a href="#"
-                class="btn btn-xs btn-primary"
-                >
+            <a href="#" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#modal_<?php echo $row['id_DG'] ?>">
                 <i class="fa fa-cog"></i>  Sửa
                 </a>
-                <a class="btn btn-xs btn-danger btn-remove" onclick="showAlert(event,'xoa.php?sid=<?php echo $row['id'] ?>')">
+                <a class="btn btn-xs btn-danger btn-remove" onclick="showAlert(event,'xoa.php?sid=<?php echo $row['id_DG'] ?>')">
                         <i class="fa fa-trash-o"></i> Xoá
                       </a>
             
                 
            </td>
+           <div class="modal fade" id="modal_<?php echo $row['id_DG'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="myModalLabel">Cập nhật thông tin</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form method="post" action="update.php">
+      
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Tiêu đề</label>
+                                    <input type="hidden" class="form-control" name="id" readonly value="<?php echo $row['id_DG'] ?>">
+                                    <input type="text" class="form-control" name="name" value="<?php echo $row['Ten_Khoa_Hoc'] ?>" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1"> Điểm đánh giá</label>
+                                    <input type="number" maxlength="3" class="form-control" name="rank" value="<?php echo $row['Diem_Danh_Gia'] ?>" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Khóa học</label>
+                            
+                                        <select class="form-control select2bs4" style="width: 100%;" name="course_name"  required>
+                                       <?php while ($row1 = mysqli_fetch_assoc($result1)) { ?>
+                                        |<option><?php echo $row['Ten_Khoa_Hoc']?></option>
+    
+                                        <?php } ?>
+                                        </select>
+                                </div>
+                                        <div class="form-group">
+                                    <label for="">Nội dung</label>
+                                    <textarea name="des" class="form-control" required maxlength="100" rows="7" value=""> <?php echo $row['Noi_dung'] ?></textarea>
+                                </div>
+                                
+                                
+                                   
+
+                                    <div class="card-footer">
+                                        <button type="submit" name="btn-up" class="btn btn-primary">Lưu lại</button>
+                                    </div>
+                        </form>
+                                    
+                         
+                        </div>
+                      </div>
+                      
           
       
           </tr>

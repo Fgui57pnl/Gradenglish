@@ -1,7 +1,14 @@
 <?php
 $path = "../";
-require_once '../../backend/config.php'; 
-require_once '../../backend/session_check.php'?>
+require_once '../../backend/config.php';
+require_once '../../backend/session_check.php';
+
+$sql="SELECT * 
+FROM khoa_hoc ";
+$result=show_data($sql);
+
+  
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,25 +50,31 @@ require_once '../../backend/session_check.php'?>
                     <!-- general form elements -->
                     <div class="card card-primary">
 
-                        <!-- /.card-header -->
+                        <!-- /.card-header --> 
                         <!-- form start -->
-                        <form>
+                        <form method="post" action="save.php">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tiêu đề</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1">
+                                    <input type="text" class="form-control" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1"> Điểm đánh giá</label>
+                                    <input type="number" maxlength="3" class="form-control" name="rank" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Khóa học</label>
-                                    <select class="form-control select2bs4" style="width: 100%;">
-                                        <option selected="selected">Alabama</option>
-                                        <option>Alaska</option>
-                                        <option>California</option>
-                                        <option>Delaware</option>
-                                        <option>Tennessee</option>
-                                        <option>Texas</option>
-                                        <option>Washington</option>
+                            
+                                        <select class="form-control select2bs4" style="width: 100%;" name="course_name"  required>
+                                       <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                                        |<option><?php echo $row['Ten_Khoa_Hoc']?></option>
+    
+                                        <?php } ?>
+                                    
+                                
+
                                     </select>
+                                   
                                 </div>
 
 
@@ -69,13 +82,14 @@ require_once '../../backend/session_check.php'?>
 
                                 <div class="form-group">
                                     <label for="">Nội dung</label>
-                                    <textarea name="des" class="form-control" id="" rows="7"></textarea>
+                                    <textarea name="des" class="form-control" required maxlength="100" rows="7"></textarea>
                                 </div>
+                                
                                 
                                    
 
                                     <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary">Tạo mới</button>
+                                        <button type="submit" name="btn-new" class="btn btn-primary">Tạo mới</button>
                                     </div>
                         </form>
                     </div>
@@ -86,14 +100,6 @@ require_once '../../backend/session_check.php'?>
 
                     <?php require_once '../share/scripts_control.php' ?>
                     </body>
-                    <script>
-                        $('.onChange-event-ratings').rateYo().on('rateyo.change', function(e, data) {
-                            var rating = data.rating;
-                            $(this)
-                                .parent()
-                                .find('.counter')
-                                .text(rating);
-                        });
-                    </script>
+                  
 
 </html>

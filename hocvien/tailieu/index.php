@@ -56,11 +56,13 @@ $result = show_data($sql);
             
           </tr>
           </thead>
-          <?php while ($row = mysqli_fetch_assoc($result)) {
+          <?php $id=1;
+          
+          while ($row = mysqli_fetch_assoc($result)) {
                 ?>
                 <tbody id="oday">
                   <td>
-                  <?php echo $row['id']?>
+                  <?php echo $id?>
                   </td>
                   <td>
                   <?php echo $row['Ten_Tai_Lieu']?>
@@ -79,7 +81,7 @@ $result = show_data($sql);
                 
 
                 </tbody>
-                <?php  } ?>
+                <?php $id++;  } ?>
         </table>
 
       
@@ -87,7 +89,7 @@ $result = show_data($sql);
       <!-- /.box-body -->
     </div>
           </div>
-      </div>
+      </div> 
       
 
 

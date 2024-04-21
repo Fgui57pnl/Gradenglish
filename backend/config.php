@@ -3,6 +3,7 @@
      define('PUBLIC_URL','http://localhost/gradenglish/public/');
      define('ADMIN_URL','http://localhost/gradenglish/admin/');
      define('STU_URL','http://localhost/gradenglish/hocvien/');
+     define('TEACHER_URL','http://localhost/gradenglish/giaovien/');
      
      
      require_once 'db.php';

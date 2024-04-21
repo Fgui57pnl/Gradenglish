@@ -6,6 +6,8 @@ $sql_tea = "SELECT COUNT(*) AS total FROM giang_vien";
 $teas= getSimpleQuery($sql_tea);
 $sql_stu = "SELECT COUNT(*) AS total FROM hoc_vien";
 $stu = getSimpleQuery($sql_stu);
+$sql_time = "SELECT COUNT(*) AS total FROM giang_day";
+$timetable = getSimpleQuery($sql_time);
 
 ?>
 
@@ -65,7 +67,7 @@ $stu = getSimpleQuery($sql_stu);
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3></h3>
+              <h3><?= $timetable['total']?></h3>
 
               <p>Lớp học</p>
             </div>

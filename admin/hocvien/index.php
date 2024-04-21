@@ -1,7 +1,13 @@
 <?php
 require_once '../../backend/config.php';
 require_once '../../backend/session_check.php';
-$sql = "SELECT * FROM hoc_vien order by id_HV asc";
+$search = "";
+if(isset($_POST['tk'])){
+  if($_POST['search'] != ""){
+    $search = " where Ho_Va_Ten like '%".$_POST['search']."%'";
+  }
+}
+$sql = "SELECT * FROM hoc_vien order by id_HV asc".$search;
 $result = show_data($sql);
 ?>
 
@@ -54,6 +60,11 @@ $result = show_data($sql);
           </button>
         </div>
       </div>
+    </div>
+     <div class="box-body">
+            <?php if(isset($_POST['tk']) && $_POST['search'] != "" ){ ?>
+            <p>Kết quả tím kiếm cho <strong><em><?php echo $_POST['search'] ?></em></strong> </p>
+            <?php } ?>
     </div>
 
     <div class="row">
@@ -129,6 +140,7 @@ $result = show_data($sql);
                               <div class="card-body">
                                 <div class="form-group">
                                   <label for="exampleInputEmail1">Email</label>
+                                  <input type="hidden" class="form-control" name="id" readonly value="<?php echo $row['id_HV'] ?>">
                                   <input type="email" class="form-control" name="Email" value="<?php echo $row['Email'] ?>" required>
                                 </div>
                                 <div class="form-group">

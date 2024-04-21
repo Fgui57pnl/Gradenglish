@@ -56,7 +56,7 @@ $result = show_data($sql);
                                 </div>
                                 <div class="form-group">
                                     <label>Khóa học</label>
-                                    <select class="form-control select2bs4" style="width: 100%;" name="course_name" required>>
+                                    <select class="form-control select2bs4" style="width: 100%;" name="course_name" required>
                                     
                                         <?php while ($row = mysqli_fetch_assoc($result)) {
                 ?>

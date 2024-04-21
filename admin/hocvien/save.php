@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btn-new'])) {
     $Email=$_POST['Email'];
     $stu_name=$_POST['stu_name'];
     $gender=$_POST['gender'];
-    $password=$_POST['password'];
+    $password=md5($_POST['password']);
     $SDT=$_POST['SDT'];
     $address=$_POST['address'];
 
