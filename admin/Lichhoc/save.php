@@ -17,12 +17,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btn-new'])) {
     $result1 = mysqli_query($conn,  $sql_teas);
     $row1 = mysqli_fetch_assoc($result1);
     $ma_giang_vien=$row1 ['Ma_Giang_Vien'];
+
+    $sql_count = "SELECT count(*) as total FROM `giang_day`";
+    $result2 = mysqli_query($conn, $sql_count);
+    $row2 = mysqli_fetch_assoc($result2);
+    $next_id = $row2['total'] + 1;
+    $ma_lh = "LH" . str_pad($next_id,2, '0', STR_PAD_LEFT);
       
      
 
     // Assuming $conn is your database connection
-    $sql = "INSERT INTO `giang_day`( `Ma_Giang_Vien`, `Ma_Khoa_Hoc`, `Thoi_gian`) 
-    VALUES ('$ma_giang_vien','$ma_khoa_hoc','$time')";
+    $sql = "INSERT INTO `giang_day`(`Ma_LH`, `Ma_Giang_Vien`, `Ma_Khoa_Hoc`, `Thoi_gian`) 
+    VALUES ('$ma_lh','$ma_giang_vien','$ma_khoa_hoc','$time')";
     
     // Execute the query
     if (mysqli_query($conn, $sql)) {

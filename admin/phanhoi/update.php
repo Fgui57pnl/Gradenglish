@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btn-up'])) {
     $sql_course= "SELECT Ma_Khoa_Hoc FROM `khoa_hoc` where Ten_Khoa_Hoc='$course_name'";
     $row = getSimpleQuery($sql_course);
     $ma_khoa_hoc=$row ['Ma_Khoa_Hoc'];
-    $id=$_POST['des'];
+    $id=$_POST['id'];
 
       
    
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btn-up'])) {
     // Assuming $conn is your database connection
 
     $sql="UPDATE `danh_gia` SET `Ma_Khoa_Hoc`='$ma_khoa_hoc',
-    `Diem_Danh_Gia`='$rank',`Noi_dung`='$des' where 'id'=$id";
+    `Diem_Danh_Gia`='$rank',`Noi_dung`='$des' where id_DG='$id'";
     
     // Execute the query
     if (mysqli_query($conn, $sql)) {

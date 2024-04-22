@@ -27,7 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btn-new'])) {
         header('location: '. ADMIN_URL.'hocvien?success=true' );
         die;
     } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        echo "<script>alert('Đã có email trong cơ sở dữ liệu')</script>";
+        header('location: '. ADMIN_URL.'giaovien' );
     }
 }
 ?>

@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btn-up'])) {
     // Assuming $conn is your database connection
     
     $sql="UPDATE `hoc_vien` SET `Ho_va_Ten`='$stu_name',`Gioi_tinh`='$gender',
-    `So_dien_thoai`='$SDT',`Dia_Chi`='$address',`Email`='$Email' where `id_HV`=$id";
+    `So_dien_thoai`='$SDT',`Dia_Chi`='$address',`Email`='$Email' where id_HV='$id'";
     
     // Execute the query
     if (mysqli_query($conn, $sql)) {

@@ -15,6 +15,7 @@ $sql_tt = "SELECT  *
 FROM trung_tam
 ";
 $result1 = show_data($sql_tt);
+$Center_option = array();
 ?>
 
 <!DOCTYPE html>
@@ -139,22 +140,38 @@ admin_check();
                             <form method="post" action="update.php">
                               <div class="card-body">
                                 <div class="form-group">
+
+                                  <input type="hidden" class="form-control" name="id_KH" required value="<?php echo $row["id_KH"]; ?>">
+                                </div>
+                                <div class="form-group">
                                   <label>Tên khóa học</label>
                                   <input type="text" class="form-control" name="course_name" required value="<?php echo $row["Ten_Khoa_Hoc"]; ?>">
                                 </div>
                                 <div class="form-group">
                                   <label>Trung tâm</label>
                                   <select class="form-control select2bs4" style="width: 100%;" name="center_name" required value="<?php echo $row["Ten_Trung_Tam"]; ?>">
+                                    <?php if (mysqli_num_rows($result1) > 0) {
+                                      
+                                      while ($row1 = mysqli_fetch_assoc($result1)) {
+                                        $Center_option[] = $row1['Ten_Trung_Tam'];
+                                      }
+                                    } ?>
+
                                     <?php
-                                    while ($row1 = mysqli_fetch_assoc($result1)) {
-                                      $selected = ($row1['Ten_Trung_Tam'] == $row['Ten_Trung_Tam']) ? 'selected="selected"' : '';
-                                    ?>
-                                      <option <?php echo $selected; ?>><?php echo $row1['Ten_Trung_Tam']; ?></option>
-                                    <?php
+                                   
+                                    if (!empty($Center_option)) {
+                                      
+                                      foreach ($Center_option as $center_name) {
+                                        $selected = ($row['Ten_Trung_Tam'] == $center_name) ? 'selected' : '';
+                                        echo "<option $selected>$center_name</option>";
                                     }
+                            
+                                      }
+                              
                                     ?>
 
                                   </select>
+                                </div>
                                   <div class="form-group">
 
                                     <div class="form-group">
@@ -244,23 +261,23 @@ admin_check();
 
                 <?php  }     ?>
               </script>
-                <script>
-        function Date_check() {
-            var start_date= new Date(document.getElementById("start_date").value);
-            var finish_date = new Date(document.getElementById("finish_date").value);
+              <script>
+                function Date_check() {
+                  var start_date = new Date(document.getElementById("start_date").value);
+                  var finish_date = new Date(document.getElementById("finish_date").value);
 
-            if (start_date >= finish_date) {
-                Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Ngày bắt đầu phải nhỏ hơn ngày kết thúc",
-        
-                });
-                return false; // Ngăn form được gửi đi
-            }
-            return true; // Cho phép gửi form nếu tất cả điều kiện đều đúng
-        }
-    </script>
+                  if (start_date >= finish_date) {
+                    Swal.fire({
+                      icon: "error",
+                      title: "Oops...",
+                      text: "Ngày bắt đầu phải nhỏ hơn ngày kết thúc",
+
+                    });
+                    return false; // Ngăn form được gửi đi
+                  }
+                  return true; // Cho phép gửi form nếu tất cả điều kiện đều đúng
+                }
+              </script>
 
             </div>
             <!-- /.box-body -->

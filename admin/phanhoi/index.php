@@ -11,6 +11,7 @@ $result = show_data($sql);
 $sql_course="SELECT * 
 FROM khoa_hoc ";
 $result1=show_data($sql_course);
+$course_option = array();
 
 ?>
 
@@ -124,12 +125,28 @@ $result1=show_data($sql_course);
                                 <div class="form-group">
                                     <label>Khóa học</label>
                             
-                                        <select class="form-control select2bs4" style="width: 100%;" name="course_name"  required>
-                                       <?php while ($row1 = mysqli_fetch_assoc($result1)) { ?>
-                                        |<option><?php echo $row['Ten_Khoa_Hoc']?></option>
-    
-                                        <?php } ?>
-                                        </select>
+                                    <select class="form-control select2bs4" style="width: 100%;" name="course_name" required value="<?php echo $row["Ten_Khoa_Hoc"]; ?>">
+                                    <?php if (mysqli_num_rows($result1) > 0) {
+                                      
+                                      while ($row1 = mysqli_fetch_assoc($result1)) {
+                                        $course_option[] = $row1['Ten_Khoa_Hoc'];
+                                      }
+                                    } ?>
+
+                                    <?php
+                                   
+                                    if (!empty($course_option)) {
+                                      
+                                      foreach ($course_option as $course_name) {
+                                        $selected = ($row['Ten_Khoa_Hoc'] == $course_name) ? 'selected' : '';
+                                        echo "<option $selected>$course_name</option>";
+                                    }
+                            
+                                      }
+                              
+                                    ?>
+
+                                  </select>
                                 </div>
                                         <div class="form-group">
                                     <label for="">Nội dung</label>

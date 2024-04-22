@@ -48,7 +48,7 @@
 
             return false; // Ngăn form được gửi đi
         }
-        var name_pattern = /^[^\d\s]+$/;
+        var name_pattern = /^[^\d]+(?:\s[^\d]+)*$/;
     if (!name_pattern.test(name)) {
         alert("Tên không được chứa số");
         return false; // Ngăn form được gửi đi

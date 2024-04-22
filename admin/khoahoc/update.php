@@ -5,6 +5,7 @@ require_once '../../backend/db.php';
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btn-up'])) {
+    $id = $_POST['id_KH'];
     $course_name = $_POST['course_name'];
     $lesson= $_POST['lesson'];
     $start_date= $_POST['startdate'];
@@ -24,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btn-up'])) {
     // Assuming $conn is your database connection
 
       $sql="UPDATE `khoa_hoc` SET `Ma_Trung_Tam`='$ma_trung_tam',`Ten_Khoa_Hoc`='$course_name',
-    `So_tiet`='$lesson',`Hoc_Phi`='$fee',`Link_Khoa_Hoc`='$lesson_link',`Ngay_BD`='$start_date',`Ngay_KT`='$finish_date'";
+    `So_tiet`='$lesson',`Hoc_Phi`='$fee',`Link_Khoa_Hoc`='$lesson_link',`Ngay_BD`='$start_date',`Ngay_KT`='$finish_date' where id_KH='$id'";
     
                         // Execute the query
 

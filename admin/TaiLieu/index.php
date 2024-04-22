@@ -7,10 +7,11 @@ FROM tai_lieu
 JOIN khoa_hoc ON tai_lieu.Ma_Khoa_Hoc = khoa_hoc.Ma_Khoa_Hoc;";
 
 $result = show_data($sql);
-$sql = "SELECT  *
+$sql1 = "SELECT  *
 FROM khoa_hoc
 ";
-$result1 = show_data($sql);
+$result1 = show_data($sql1);
+$course_option = array();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -115,12 +116,27 @@ $result1 = show_data($sql);
                                   <input type="text" class="form-control" name="doc_name" value="<?php echo $row['Ten_Tai_Lieu'] ?>" required>
                                 </div>
                                 <div class="form-group">
-                                  <label>Khóa học</label>
-                                  <select class="form-control select2bs4" style="width: 100%;" name="course_name" required>>
+                                  <label>Tên khóa học</label>
+                                  <select class="form-control select2bs4" style="width: 100%;" name="course_name" required value="<?php echo $row["Ten_Khoa_Hoc"]; ?>">
+                                    <?php if (mysqli_num_rows($result1) > 0) {
+                                      
+                                      while ($row1 = mysqli_fetch_assoc($result1)) {
+                                        $course_option[] = $row1['Ten_Khoa_Hoc'];
+                                      }
+                                    } ?>
 
-                                    <?php while ($row1 = mysqli_fetch_assoc($result1)) { ?>
-                                      <option> <?php echo $row1['Ten_Khoa_Hoc'] ?></option>
-                                    <?php } ?>
+                                    <?php
+                                   
+                                    if (!empty($course_option)) {
+                                      
+                                      foreach ($course_option as $course_name) {
+                                        $selected = ($row['Ten_Khoa_Hoc'] == $course_name) ? 'selected' : '';
+                                        echo "<option $selected>$course_name</option>";
+                                    }
+                            
+                                      }
+                              
+                                    ?>
 
                                   </select>
                                 </div>
@@ -191,15 +207,26 @@ $result1 = show_data($sql);
             }
           });
         }
-      </script>
-      <script>
-        <?php
-        if (isset($_GET['success']) && $_GET['success'] == true) {
-        ?>
-          alert("Tạo mới thành công");
-          history.replaceState({}, document.title, window.location.pathname);
+     
+        <script type="text/javascript">
+                <?php
+                if (isset($_GET['success']) && $_GET['success'] == true) {
+                ?>
+                  alert("Tạo mới thành công");
+                  history.replaceState({}, document.title, window.location.pathname);
 
-        <?php } ?>
+                <?php } ?>
+                </script>
+                <script>
+                <?php
+                if (isset($_GET['editsuccess']) && $_GET['editsuccess'] == true) {
+                ?>
+
+                  alert("Sửa đổi thành công");
+                  history.replaceState({}, document.title, window.location.pathname);
+
+
+                <?php  }     ?>
       </script>
 
 

@@ -9,12 +9,17 @@ FROM giang_day
 JOIN giang_vien ON giang_day.Ma_Giang_Vien = giang_vien.Ma_Giang_Vien
 JOIN khoa_hoc ON giang_day.Ma_Khoa_Hoc = khoa_hoc.Ma_Khoa_Hoc;";
 $result = show_data($sql);
-$sql1 = "SELECT * 
-FROM giang_vien";
+$sql1 = "SELECT  *
+FROM giang_vien
+";
 $result1 = show_data($sql1);
-$sql2 = "SELECT * 
-FROM khoa_hoc";
+$tea_option = array();
+
+$sql2 = "SELECT  *
+FROM khoa_hoc
+";
 $result2 = show_data($sql2);
+$course_option = array();
 ?>
 
 <!DOCTYPE html>
@@ -119,43 +124,81 @@ $result2 = show_data($sql2);
                                     
                                     <div class="card-body">
                                     <div class="form-group">
-                                        <label>Tên giảng viên</label>
-                                        <select class="form-control select2bs4" style="width: 100%;" name="teas_name" required>
-                                          <?php while ($row1 = mysqli_fetch_assoc($result1)) {
-                                            $selected = ($row1['Ho_va_Ten'] == $choose_teas) ? "selected" : "";
-                                          ?>
-                                            <option <?php echo $selected ?>><?php echo $row1['Ho_va_Ten'] ?></option>
+                                    <label>Tên giảng viên</label>
+                                  <select class="form-control select2bs4" style="width: 100%;" name="tea_name" required value="<?php echo $row["Ho_va_Ten"]; ?>">
+                                    <?php if (mysqli_num_rows($result1) > 0) {
+                                      
+                                      while ($row1 = mysqli_fetch_assoc($result1)) {
+                                        $tea_option[] = $row1['Ho_va_Ten'];
+                                      }
+                                    } ?>
 
-                                          <?php } ?>
-                                        </select>
-                                      </div>
+                                    <?php
+                                   
+                                    if (!empty($tea_option)) {
+                                      
+                                      foreach ($tea_option as $tea_name) {
+                                        $selected0 = ($row['Ho_va_Ten'] == $tea_name) ? 'selected' : '';
+                                        echo "<option $selected0>$tea_name</option>";
+                                    }
+                            
+                                      }                                 
+                              
+                                    ?>
+
+                                  </select>
+                                </div>
                                       <div class="form-group">
-                                        <label>Tên Khóa học</label>
-                                        <select class="form-control select2bs4" style="width: 100%;" name="course_name" required>
-                                        <?php while ($row2 = mysqli_fetch_assoc($result2)) {
-                                            $selected1 = ($row2['Ten_Khoa_Hoc']  == $choose_course) ? "selected" : "";
-                                          ?>
-                                            <option <?php echo $selected1 ?>><?php echo $row2['Ten_Khoa_Hoc']?></option>
+                                      <label>Tên khóa học</label>
+                                  <select class="form-control select2bs4" style="width: 100%;" name="course_name" required value="<?php echo $row["Ten_Khoa_Hoc"]; ?>">
+                                    <?php if (mysqli_num_rows($result2) > 0) {
+                                      
+                                      while ($row2 = mysqli_fetch_assoc($result2)) {
+                                        $course_option[] = $row2['Ten_Khoa_Hoc'];
+                                      }
+                                    } ?>
 
-                                          <?php } ?>
-                                          
-                                        </select>
+                                    <?php
+                                   
+                                    if (!empty($course_option)) {
+                                      
+                                      foreach ($course_option as $course_name) {
+                                        $selected = ($row['Ten_Khoa_Hoc'] == $course_name) ? 'selected' : '';
+                                        echo "<option $selected>$course_name</option>";
+                                    }
+                            
+                                      }
+                              
+                                    ?>
 
-                                      </div>
-
+                                  </select>
+                                </div>
 
                                      
                                       <div class="form-group">
                                         <label>Ca học</label>
                                         <select class="form-control select2bs4" name="time" style="width: 100%;" required>
-                                          <option>Ca 1: 2,4,6 6h30->8h30</option>
-                                          <option>Ca 2: 2,4,6 2h30->4h30</option>
-                                          <option>Ca 3: 2,4,6 8h30->10h00</option>
-                                          <option>Ca 4: 3,5,7 6h30->8h30</option>
-                                          <option>Ca 5: 3,5,7 2h30->4h30</option>
-                                          <option>Ca 6: 3,5,7 8h30->10h00</option>
+                                        <?php
+                                  // Define an array of car options
+                                  $timetable_options = array("Ca 1: 2,4,6 6h30->8h30", 
+                                                          "Ca 2: 2,4,6 2h30->4h30",
+                                                          "Ca 3: 2,4,6 8h30->10h00",
+                                                          "Ca 4: 3,5,7 6h30->8h30",
+                                                          "Ca 5: 3,5,7 2h30->4h30",
+                                                          "Ca 6: 3,5,7 8h30->10h00");
+
+                                  // Loop through the array to create options
+                                  foreach ( $timetable_options   as $option) {
+                                    // Check if the option matches the submitted value
+                                    $selected2 = ($row['Thoi_gian'] == $option) ? 'selected' : '';
+
+                                    // Output each option with selected attribute if applicable
+                                    echo "<option value='$option' $selected2>$option</option>";
+                                  }
+                                  ?>
                                         </select>
                                       </div>
+                                      
 
                                       <!-- /.card-body -->
 
