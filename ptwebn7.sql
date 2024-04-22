@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2024 at 07:52 AM
+-- Generation Time: Apr 22, 2024 at 07:14 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -100,7 +100,8 @@ CREATE TABLE `danh_gia` (
 --
 
 INSERT INTO `danh_gia` (`id_DG`, `Ma_Khoa_Hoc`, `Diem_Danh_Gia`, `Ngay_DG`, `Noi_dung`) VALUES
-(12, 'KH01', 50, '2024-04-18', '  Hay');
+(12, 'KH01', 100, '2024-04-18', '     Hay'),
+(13, 'KH01', 50, '2024-04-22', 'Hay');
 
 -- --------------------------------------------------------
 
@@ -122,6 +123,7 @@ CREATE TABLE `de_thi` (
 
 CREATE TABLE `giang_day` (
   `id_LH` int(11) NOT NULL,
+  `Ma_LH` varchar(8) NOT NULL,
   `Ma_Giang_Vien` varchar(8) NOT NULL,
   `Ma_Khoa_Hoc` varchar(6) NOT NULL,
   `Thoi_gian` text NOT NULL
@@ -131,8 +133,9 @@ CREATE TABLE `giang_day` (
 -- Dumping data for table `giang_day`
 --
 
-INSERT INTO `giang_day` (`id_LH`, `Ma_Giang_Vien`, `Ma_Khoa_Hoc`, `Thoi_gian`) VALUES
-(1, 'GV01', 'KH01', '2,4,6. Tối 6h30->8h30');
+INSERT INTO `giang_day` (`id_LH`, `Ma_LH`, `Ma_Giang_Vien`, `Ma_Khoa_Hoc`, `Thoi_gian`) VALUES
+(1, 'LH01', 'GV01', 'KH01', 'Ca 2: 2,4,6 2h30->4h30'),
+(10, 'LH02', 'GV02', 'KH02', 'Ca 6: 3,5,7 8h30->10h00');
 
 -- --------------------------------------------------------
 
@@ -158,7 +161,7 @@ CREATE TABLE `giang_vien` (
 
 INSERT INTO `giang_vien` (`id_GV`, `Ma_Giang_Vien`, `Ho_va_Ten`, `Mat_khau`, `Loai_Tai_khoan`, `Gioi_tinh`, `So_dien_thoai`, `Dia_Chi`, `Email`) VALUES
 (1, 'GV01', 'Minh Quân', 'e10adc3949ba59abbe56e057f20f883e', 'Giáo viên', 'Nam', ' 0123456789', 'Quận 1, Tp HCM', 'pquan5459@gmail.com'),
-(4, 'GV02', 'Diệp Minh', 'e10adc3949ba59abbe56e057f20f883e', 'Giáo viên', 'Nam', ' 0123456789', 'Ninh Kiều', 'quanb2110025@student.ctu.edu.v');
+(4, 'GV02', 'Diệp Minh', 'e10adc3949ba59abbe56e057f20f883e', 'Giáo viên', 'Nam', ' 0123456789', 'Ninh Kiều', 'quanb2110025@student.ctu.edu');
 
 -- --------------------------------------------------------
 
@@ -205,7 +208,7 @@ CREATE TABLE `hoc_vien` (
 --
 
 INSERT INTO `hoc_vien` (`id_HV`, `Loai_Tai_Khoan`, `Mat_khau`, `Ma_hoc_vien`, `Ho_va_Ten`, `Gioi_tinh`, `So_dien_thoai`, `Dia_Chi`, `Email`) VALUES
-(1, 'Học viên', 'e10adc3949ba59abbe56e057f20f883e', 'HV01', 'Diệp Minh', 'Nam', '0123456789', 'Quận 1, Tp HCM', 'nva@gmail.com');
+(1, 'Học viên', 'e10adc3949ba59abbe56e057f20f883e', 'HV01', 'Diệp Min', 'Nam', '0123456789', 'Quận 1, Tp HCM', 'nva@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -230,7 +233,8 @@ CREATE TABLE `khoa_hoc` (
 --
 
 INSERT INTO `khoa_hoc` (`id_KH`, `Ma_Khoa_Hoc`, `Ma_Trung_Tam`, `Ten_Khoa_Hoc`, `So_tiet`, `Hoc_Phi`, `Link_Khoa_Hoc`, `Ngay_BD`, `Ngay_KT`) VALUES
-(1, 'KH01', 'TT01', 'TOEIC', 40, 10000000, 'www.example.com', '2024-04-01', '2024-04-30');
+(1, 'KH01', 'TT02', 'IELT', 40, 1000000, 'www.example.com', '2024-04-01', '2024-04-21'),
+(8, 'KH02', 'TT01', 'TOEIC', 40, 1000000, 'www.example.com', '2024-04-01', '2024-04-21');
 
 -- --------------------------------------------------------
 
@@ -290,7 +294,8 @@ CREATE TABLE `tai_lieu` (
 --
 
 INSERT INTO `tai_lieu` (`id`, `Ten_Tai_Lieu`, `Ma_Khoa_Hoc`, `Loai_Tai_lieu`, `Link_Tai_Lieu`) VALUES
-(3, 'Video ôn tập', 'KH01', 'Giáo trình', 'www.example.com');
+(3, 'Video ', 'KH01', 'Giáo trình', 'www.example.com'),
+(5, 'Video ôn tập', 'KH02', 'Video bài giảng', 'www.example.com');
 
 -- --------------------------------------------------------
 
@@ -383,7 +388,7 @@ CREATE TABLE `trung_tam` (
 --
 
 INSERT INTO `trung_tam` (`id_TT`, `Ma_Trung_Tam`, `Ten_Trung_Tam`, `Website`, `Dia_chi`) VALUES
-(1, 'TT01', 'Hà Nội', 'https://www.example.com/ ', 'Quận Hoàn Kiếm, thành phố Hà Nội'),
+(1, 'TT01', 'Trung tâm Hà Nội', 'www.example.com ', 'Quận Hoàn Kiếm'),
 (2, 'TT02', 'HCM', 'www.example.com ', 'Quận 1, Tp HCM');
 
 --
@@ -440,7 +445,8 @@ ALTER TABLE `de_thi`
 -- Indexes for table `giang_day`
 --
 ALTER TABLE `giang_day`
-  ADD PRIMARY KEY (`id_LH`),
+  ADD PRIMARY KEY (`Ma_LH`),
+  ADD UNIQUE KEY `id_LH` (`id_LH`),
   ADD KEY `Ma_Giang_Vien` (`Ma_Giang_Vien`,`Ma_Khoa_Hoc`),
   ADD KEY `Ma_Khoa_Hoc` (`Ma_Khoa_Hoc`);
 
@@ -449,7 +455,9 @@ ALTER TABLE `giang_day`
 --
 ALTER TABLE `giang_vien`
   ADD PRIMARY KEY (`Ma_Giang_Vien`),
-  ADD UNIQUE KEY `id` (`id_GV`);
+  ADD UNIQUE KEY `id` (`id_GV`),
+  ADD UNIQUE KEY `Email` (`Email`),
+  ADD UNIQUE KEY `Email_2` (`Email`);
 
 --
 -- Indexes for table `hoa_don`
@@ -466,6 +474,7 @@ ALTER TABLE `hoa_don`
 ALTER TABLE `hoc_vien`
   ADD PRIMARY KEY (`Ma_hoc_vien`),
   ADD UNIQUE KEY `id` (`id_HV`),
+  ADD UNIQUE KEY `Email` (`Email`),
   ADD KEY `Ma_hoc_vien` (`Ma_hoc_vien`);
 
 --
@@ -487,13 +496,13 @@ ALTER TABLE `lich_hoc`
 --
 ALTER TABLE `nguoi_dung`
   ADD PRIMARY KEY (`Ma_ND`),
-  ADD UNIQUE KEY `id` (`id`);
+  ADD UNIQUE KEY `id` (`id`),
+  ADD UNIQUE KEY `Email` (`Email`);
 
 --
 -- Indexes for table `tai_lieu`
 --
 ALTER TABLE `tai_lieu`
-  ADD PRIMARY KEY (`Ten_Tai_Lieu`),
   ADD UNIQUE KEY `id` (`id`),
   ADD KEY `FK_TAI_LIEU_THUOC_VE__KHOA_HOC` (`Ma_Khoa_Hoc`);
 
@@ -554,37 +563,37 @@ ALTER TABLE `trung_tam`
 -- AUTO_INCREMENT for table `danh_gia`
 --
 ALTER TABLE `danh_gia`
-  MODIFY `id_DG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_DG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `giang_day`
 --
 ALTER TABLE `giang_day`
-  MODIFY `id_LH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_LH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `giang_vien`
 --
 ALTER TABLE `giang_vien`
-  MODIFY `id_GV` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_GV` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `hoa_don`
 --
 ALTER TABLE `hoa_don`
-  MODIFY `id_HD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_HD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `hoc_vien`
 --
 ALTER TABLE `hoc_vien`
-  MODIFY `id_HV` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_HV` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `khoa_hoc`
 --
 ALTER TABLE `khoa_hoc`
-  MODIFY `id_KH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_KH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `nguoi_dung`
@@ -596,7 +605,7 @@ ALTER TABLE `nguoi_dung`
 -- AUTO_INCREMENT for table `tai_lieu`
 --
 ALTER TABLE `tai_lieu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `trung_tam`
